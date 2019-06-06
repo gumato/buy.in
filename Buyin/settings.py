@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'buyapp.apps.BuyappConfig',
+    'bootstrap4',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
