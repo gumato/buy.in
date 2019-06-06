@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ block.super}}
+{% load bootstrap4 %}
+<div class="container">
+    <div class="row">
+           
+        {% for project in projects %}
+
+        <div class="col-md-4 main-page d-flex" style=" margin-top: 5px;">
+            <div class="card card-cascade wider flex-fill ">
+
+                
+                <div class="view view-cascade overlay">
+                <img class="card-img-top"
+                            src="{{project.image.url}}" alt="{{project.title}}">
+                </div>
+                
+                
+                <div class="card-body">
+
+                    
+                    <h4 class="card-title">{{new.name}}</h4>
+            
+                    <p class="card-text">{{project.description}}</p>
+                    <p><a href="{{project.link}}">View Site</a></p>                    
+                    <p><a href="{% url 'single' project.pk %}">See project</a></a></p>
+
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+        <div class="row">
+            <!-- <h1 class="text-center"> No Images Yet</h1> -->
+        </div>
+        {% endfor %}
+        <div class="review-section">
+            {% for review in reviews %}
+            {% if project.id == review.project.id %}
+ 
+            <p><strong>{{review.juror}}</strong> {{review.comment}} [usability: {{review.usability}}, content: {{review.content}} , design: {{review.design}}]</p>
+            <p>{{ project.average_score | floatformat }}</p>
+            {% endif %}
+ 
+            {%endfor%}
+ 
+ 
+            {{form.media}}
+            <hr>
+            <form action="" method="post" enctype="multipart/form-data" id="sema">
+              {%csrf_token%}
+              <table>
+                {{ form.as_table }}
+              </table>
+            
+ 
+ 
+            </form>
+            
+ 
+          </div>
+ 
+
+
+    </div>
+</div>
+</div>
+
+{% endblock %}
