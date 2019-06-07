@@ -43,9 +43,9 @@ def search(request):
 def product(request):
     category = None
     category = Category.objects.all()
-def categories(request,id):
+def categories(request,idi):
     title='Category'
-    products = Product.objects.filter(id=id)
+    products = Product.objects.filter(category=idi)
     
     return render(request,'category.html',{'title':title,'products':products})
 
